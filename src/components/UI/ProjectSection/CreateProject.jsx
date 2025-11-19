@@ -9,8 +9,7 @@ import Input from "@/components/common/Forms/Input";
 import FetchLoading from "@/components/common/Loading/FetchLoading";
 import { useCreateProjectMutation } from "@/redux/api/projectsApi";
 import { useGetAllTeamsQuery } from "@/redux/api/teamApi";
-import Textarea from "@/components/common/Textarea/Textarea";
-import SelectAndSearch from "@/components/common/SelectAndSearch/SelectAndSearch";
+import Textarea from "@/components/common/Forms/Textarea";
 
 const CreateProject = () => {
   const router = useRouter();
@@ -19,7 +18,6 @@ const CreateProject = () => {
     register,
     handleSubmit,
     reset,
-    setValue,
     formState: { errors },
   } = useForm();
 
@@ -35,7 +33,7 @@ const CreateProject = () => {
       const payload = {
         name: formData.name,
         description: formData.description,
-        team: formData.teamId, // teamId is auto-set by SelectAndSearch
+        team: formData.team,
       };
 
       const res = await createProject(payload).unwrap();
@@ -77,34 +75,39 @@ const CreateProject = () => {
             required={true}
             errors={errors}
           />
+          {/* TEAM DROPDOWN */}
+          <div>
+            <label className="label">Select Team</label>
+            <select
+              {...register("team", { required: true })}
+              className="input w-full  px-4 h-[46px] bg-[#19191F] text-[#787F90] border border-[#26272F] rounded-md flex items-center justify-between cursor-pointer"
+            >
+              <option value="">Select a Team</option>
+
+              {!teamLoading &&
+                teamData?.data?.map((team) => (
+                  <option key={team._id} value={team._id}>
+                    {team.name}
+                  </option>
+                ))}
+            </select>
+
+            {errors.team && (
+              <p className="text-red-500 text-sm mt-1">Team is required</p>
+            )}
+          </div>
 
           {/* DESCRIPTION */}
-          <Textarea
-            label="Description"
-            text="description"
-            register={register}
-            errors={errors}
-            placeholder="Short project description"
-          />
-
-          {/* TEAM DROPDOWN */}
-          <SelectAndSearch
-            label="Select Team"
-            type_id="teamId" // will store team._id
-            type_name="teamName" // will store team.name
-            setValue={setValue}
-            register={register}
-            required={true}
-            message="Team is required"
-            errors={errors}
-            placeholder="Search & Select Team"
-            options={
-              teamData?.data?.map((t) => ({
-                id: t._id,
-                name: t.name,
-              })) || []
-            }
-          />
+          <div>
+            <Textarea
+              placeholder="Enter Description"
+              text="description"
+              label="Description"
+              required={false}
+              register={register}
+              errors={errors}
+            />
+          </div>
 
           {/* SUBMIT BUTTON */}
           <div>

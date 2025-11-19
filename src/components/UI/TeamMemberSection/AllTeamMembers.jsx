@@ -9,9 +9,7 @@ import EditIcon from "@/components/common/EditIcon/EditIcon";
 import DeleteIcon from "@/components/common/DeleteIcon/DeleteIcon";
 import AccountPagination from "@/components/common/AccountPagination/AccountPagination";
 import NotFound from "@/components/common/NotFound/NotFound";
-import Image from "next/image";
 import { useDebounce } from "@/hooks/useDebounce";
-import { truncateCharacters } from "@/utils/descriptionTextCounter";
 
 import {
   useDeleteTeamMutation,
