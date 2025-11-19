@@ -1,11 +1,7 @@
 export const tagTypes = {
   auth: "auth",
   user: "user",
-  testimonials: "testimonials",
+  team: "team",
 };
 
-export const tagTypesList = [
-  tagTypes.auth,
-  tagTypes.user,
-  tagTypes.testimonials,
-];
+export const tagTypesList = [tagTypes.auth, tagTypes.user, tagTypes.team];

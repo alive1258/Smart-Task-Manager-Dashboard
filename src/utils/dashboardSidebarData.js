@@ -48,80 +48,27 @@ import { GiReturnArrow } from "react-icons/gi";
 import { AiOutlineTransaction } from "react-icons/ai";
 import { LuLayoutTemplate } from "react-icons/lu";
 
-export const privateRouteNames = [
-  "Services",
-  "Category",
-  "Delivery",
-  "Customer",
-  "Users",
-  "Company rules",
-  "Company names",
-  "Banners",
-];
-
 export const SidebarItemsData = [
   {
     id: 1,
-    name: "Home Page",
+    name: "Team Member",
     module_id: 1,
     path: "",
     Icon: <MdOutlineCategory size={20} />,
     sub: [
       {
         id: 1,
-        name: "Home Hero",
-        path: "/home-page/home-hero/all-home-heros",
+        name: "All Team Mebmers",
+        path: "/team/all-team-members",
         module_id: 1,
         Icon: <MdFormatListNumbered size={20} />,
       },
       {
         id: 2,
-        name: "Education",
-        path: "/home-page/education/all-educations",
+        name: "Add New Team Member",
+        path: "/team/add-team-member",
         module_id: 1,
         Icon: <FaSellcast size={20} />,
-      },
-      {
-        id: 3,
-        name: "Home About",
-        path: "/home-page/home-about/all-home-abouts",
-        module_id: 1,
-        Icon: <MdFormatListNumbered size={20} />,
-      },
-      {
-        id: 4,
-        name: "Experience",
-        path: "/home-page/experience/all-experiences",
-        module_id: 1,
-        Icon: <LuLayoutTemplate size={20} />,
-      },
-      {
-        id: 5,
-        name: "Skills",
-        path: "/home-page/skill/all-skills",
-        module_id: 1,
-        Icon: <IoSettingsSharp size={20} />,
-      },
-      {
-        id: 6,
-        name: "Skills Category",
-        path: "/home-page/skills-category/all-skills-categories",
-        module_id: 1,
-        Icon: <IoSettingsSharp size={20} />,
-      },
-      {
-        id: 7,
-        name: "Collaborating",
-        path: "/home-page/collaborating/all-collaborating",
-        module_id: 1,
-        Icon: <IoSettingsSharp size={20} />,
-      },
-      {
-        id: 7,
-        name: "Collaborate",
-        path: "/home-page/collaborates/all-collaborates",
-        module_id: 1,
-        Icon: <IoSettingsSharp size={20} />,
       },
     ],
   },
