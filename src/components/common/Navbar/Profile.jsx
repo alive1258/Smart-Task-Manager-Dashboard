@@ -5,7 +5,6 @@ import Swal from "sweetalert2";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { useSignOutMutation } from "@/redux/api/authApi";
-import Image from "next/image";
 
 const Profile = ({ user }) => {
   const router = useRouter();
@@ -66,13 +65,7 @@ const Profile = ({ user }) => {
       >
         <div className="flex items-center space-x-2">
           {/* user?.photo  */}
-          <Image
-            src={"/assets/images/sayem.png"}
-            className="flex justify-center items-center"
-            width={36}
-            height={36}
-            alt="flag"
-          />
+
           <div className="">
             <h6 className="text-[15px] font-semibold text-primary-muted">
               {user?.name}

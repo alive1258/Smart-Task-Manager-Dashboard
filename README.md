@@ -1,8 +1,8 @@
-## 🛒 Portfolio System
+## Smart Task Manager Dashboard
 
-## Getting Started Setup and Usage
+## Getting Started: Setup and Usage
 
-First, run the development server:
+Follow these steps to get the development server running:
 
 ## Setup and Usage
 
@@ -19,7 +19,7 @@ git clone https://github.com/alive1258/pos-dashboard
 cd [Project Directory]
 ```
 
-- `Create a .env file in the root folder of the frontend project.`
+- `Create a .env file in the root folder of the frontend project and add the`
 - `Add the following environment variable`
 
 ```js
@@ -41,17 +41,23 @@ npm run dev
 
 ## Features to Implement
 
-- Add new
+- Add new tasks or projects
 
-- View list o
+- View list of tasks/projects
 
-- Search
+- Search functionality
+
+- Edit and delete tasks/projects
+
+- Team management and assignment
+
+- Dashboard charts and reports
 
 ## Frontend Technologies Used
 
 - React 19 – For building the user interface
 
-- Next.js 15 – React framework for SSR and routing
+- Next.js 16 – React framework for SSR and routing
 
 - Tailwind CSS – Utility-first CSS framework for rapid UI development
 

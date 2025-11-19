@@ -125,6 +125,7 @@ const AllProjects = () => {
                   <th className="table_th w-10">#</th>
                   <th>Project Name</th>
                   <th>Team Info</th>
+
                   <th className="text-center">Action</th>
                 </tr>
               </thead>

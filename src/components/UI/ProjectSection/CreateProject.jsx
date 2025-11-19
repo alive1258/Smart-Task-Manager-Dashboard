@@ -9,7 +9,6 @@ import Input from "@/components/common/Forms/Input";
 import FetchLoading from "@/components/common/Loading/FetchLoading";
 import { useCreateProjectMutation } from "@/redux/api/projectsApi";
 import { useGetAllTeamsQuery } from "@/redux/api/teamApi";
-import Textarea from "@/components/common/Forms/Textarea";
 
 const CreateProject = () => {
   const router = useRouter();
@@ -32,7 +31,6 @@ const CreateProject = () => {
     try {
       const payload = {
         name: formData.name,
-        description: formData.description,
         team: formData.team,
       };
 
@@ -98,16 +96,6 @@ const CreateProject = () => {
           </div>
 
           {/* DESCRIPTION */}
-          <div>
-            <Textarea
-              placeholder="Enter Description"
-              text="description"
-              label="Description"
-              required={false}
-              register={register}
-              errors={errors}
-            />
-          </div>
 
           {/* SUBMIT BUTTON */}
           <div>
