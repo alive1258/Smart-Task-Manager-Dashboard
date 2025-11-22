@@ -2,16 +2,24 @@
 
 import { useForm } from "react-hook-form";
 import Link from "next/link";
-import { useDispatch } from "react-redux";
 import { toast } from "react-toastify";
 import { useRouter } from "next/navigation";
 import { ImSpinner10 } from "react-icons/im";
 import { useSignInMutation } from "@/redux/api/authApi";
-// import { storeOTPData } from "@/redux/features/otpSlice";
 import Input from "../common/Forms/Input";
+import { instance } from "@/helpers/axiosInstance";
+
+const setCookie = (name, value, days) => {
+  if (typeof document === "undefined") return;
+
+  const date = new Date();
+  date.setTime(date.getTime() + days * 24 * 60 * 60 * 1000);
+  const expires = "expires=" + date.toUTCString();
+  const secure = process.env.NODE_ENV === "production" ? ";Secure" : "";
+  document.cookie = `${name}=${value};${expires};path=/;SameSite=Strict${secure}`;
+};
 
 const SignIn = () => {
-  const dispatch = useDispatch();
   const router = useRouter();
   const {
     register,
@@ -28,12 +36,20 @@ const SignIn = () => {
       if (res?.success && res?.data?.accessToken) {
         // Save accessToken in memory or localStorage
         localStorage.setItem("accessToken", res.data.accessToken);
+        localStorage.setItem("refreshToken", res.data.refreshToken);
 
+        // Set cookie
+        setCookie("refreshToken", res.data.refreshToken, 7);
+
+        instance.defaults.headers.common[
+          "Authorization"
+        ] = `Bearer ${res.data.accessToken}`;
         toast.success(res.message);
         reset();
         router.push("/"); // Redirect to home page
       }
     } catch (error) {
+      console.log(error, "error.............");
       toast.error(error?.data?.message || "Login failed");
     }
   };

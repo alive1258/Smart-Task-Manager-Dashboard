@@ -15,6 +15,13 @@ const Profile = ({ user }) => {
     setActiveModal(!activeModal);
   };
 
+  // Simple cookie deletion function
+  const deleteCookie = (name) => {
+    if (typeof document === "undefined") return;
+    document.cookie =
+      name + "=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+  };
+
   const handleLogout = async () => {
     try {
       const result = await Swal.fire({
@@ -28,8 +35,18 @@ const Profile = ({ user }) => {
       });
 
       if (result.isConfirmed) {
-        const response = await signOut().unwrap();
-        if (response?.success) {
+        const refreshToken = localStorage.getItem("refreshToken");
+        console.log(refreshToken, "refreshToken");
+
+        if (refreshToken) {
+          // Remove from localStorage
+          localStorage.removeItem("refreshToken");
+          localStorage.removeItem("accessToken");
+
+          // Remove cookies
+          deleteCookie("refreshToken");
+          deleteCookie("accessToken");
+
           router.push("/login");
           Swal.fire({
             title: "Signed Out",
@@ -37,22 +54,32 @@ const Profile = ({ user }) => {
             icon: "success",
           });
         } else {
+          // If no refreshToken found, still clear everything
+          localStorage.removeItem("refreshToken");
+          localStorage.removeItem("accessToken");
+          deleteCookie("refreshToken");
+          deleteCookie("accessToken");
+
+          router.push("/login");
           Swal.fire({
-            title: "Sign Out Failed",
-            text:
-              response?.message ||
-              "Unable to process your sign out request. Please try again.",
-            icon: "error",
+            title: "Signed Out",
+            text: "You have been signed out.",
+            icon: "info",
           });
         }
       }
     } catch (error) {
+      // Even if there's an error, clear all authentication data
+      localStorage.removeItem("refreshToken");
+      localStorage.removeItem("accessToken");
+      deleteCookie("refreshToken");
+      deleteCookie("accessToken");
+
+      router.push("/login");
       Swal.fire({
-        title: "Unexpected Error",
-        text: `Something went wrong. Please try again later. Error details: ${
-          error.data || error.message
-        }`,
-        icon: "error",
+        title: "Signed Out",
+        text: "You have been signed out.",
+        icon: "info",
       });
     }
   };

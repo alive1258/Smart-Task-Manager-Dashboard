@@ -31,10 +31,12 @@ export const removeUser = () => {
 };
 
 export const getNewAccessToken = async () => {
+  const refreshToken = localStorage.getItem("refreshToken");
   return await axiosInstance({
     url: `${process.env.NEXT_PUBLIC_API_URL}/auth/refresh-token`,
     method: "POST",
     headers: { "Content-Type": "application/json" },
     withCredentials: true,
+    data: { refreshToken },
   });
 };
