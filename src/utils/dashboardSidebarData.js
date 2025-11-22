@@ -118,27 +118,4 @@ export const SidebarItemsData = [
       },
     ],
   },
-  {
-    id: 4,
-    name: "task-auto-reassign-flow",
-    module_id: 1,
-    path: "",
-    Icon: <AiOutlineTransaction size={20} />,
-    sub: [
-      {
-        id: 1,
-        name: "All Tasks",
-        path: "/tasks/task-auto-reassign-flow",
-        module_id: 1,
-        Icon: <MdFormatListNumbered size={20} />,
-      },
-      {
-        id: 2,
-        name: "Add task-auto-reassign-flow",
-        path: "/tasks/add-task-auto-reassign-flow",
-        module_id: 1,
-        Icon: <FaSellcast size={20} />,
-      },
-    ],
-  },
 ];

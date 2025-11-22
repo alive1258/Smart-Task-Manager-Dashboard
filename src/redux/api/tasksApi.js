@@ -43,6 +43,14 @@ export const tasksApi = baseApi.injectEndpoints({
       }),
       invalidatesTags: [tagTypes.tasks],
     }),
+    // Query: Get tasks by project ID
+    getTasksByProject: build.query({
+      query: (projectId) => ({
+        url: `${TASK_URL}/project/${projectId}`,
+        method: "GET",
+      }),
+      providesTags: [tagTypes.tasks],
+    }),
 
     // Mutation for deleting a tasks by its ID
     deleteTask: build.mutation({
@@ -69,4 +77,5 @@ export const {
   useGetSingleTaskQuery,
   useUpdateTaskMutation,
   useAutoReassignTasksMutation,
+  useGetTasksByProjectQuery,
 } = tasksApi;

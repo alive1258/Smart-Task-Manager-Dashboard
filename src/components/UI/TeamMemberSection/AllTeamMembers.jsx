@@ -20,11 +20,7 @@ const AllTeamMembers = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [searchValue, setSearchValue] = useState({});
 
-  const debouncedQuery = useDebounce(searchQuery, 400);
-
-  const { data, error, isLoading, refetch } = useGetAllTeamsQuery({
-    search: debouncedQuery,
-  });
+  const { data, error, isLoading, refetch } = useGetAllTeamsQuery();
   const [deleteTeam] = useDeleteTeamMutation();
 
   const teams = data?.data || [];
