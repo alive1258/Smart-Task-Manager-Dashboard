@@ -48,7 +48,7 @@ const AddTeamMember = () => {
       if (res?.success) {
         toast.success("Team Created Successfully!");
         reset();
-        router.back();
+        router.push("/team/all-team-members");
       } else {
         toast.error(res?.message || "Failed to create team");
       }
@@ -123,7 +123,7 @@ const AddTeamMember = () => {
                         max: 5,
                         valueAsNumber: true,
                       })}
-                      className="input"
+                      className="input_style w-full"
                     />
 
                     {errors.members?.[index]?.capacity && (

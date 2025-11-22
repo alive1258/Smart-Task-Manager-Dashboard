@@ -39,7 +39,7 @@ const CreateProject = () => {
       if (res?.success) {
         toast.success("Project Created Successfully!");
         reset();
-        router.back();
+        router.push("/projects/all-projects");
       } else {
         toast.error(res?.message || "Failed to create project");
       }

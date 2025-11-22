@@ -10,6 +10,7 @@ const authApi = baseApi.injectEndpoints({
       query: (data) => ({
         url: `${AUTH_URL}/login`,
         method: "POST",
+        credentials: "include",
         data,
       }),
       providesTags: [tagTypes.auth],

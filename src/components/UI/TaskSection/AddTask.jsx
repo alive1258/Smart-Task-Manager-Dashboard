@@ -187,14 +187,12 @@ const AddTask = () => {
         payload.assignedTo = formData.assignedTo;
       }
 
-      console.log("Creating task with payload:", payload);
-
       const res = await createTask(payload).unwrap();
 
       if (res?.success) {
         toast.success("Task created successfully!");
         reset();
-        router.back();
+        router.push("/tasks/all-tasks");
       } else {
         toast.error(res?.message || "Failed to create task");
       }
